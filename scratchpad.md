@@ -87,10 +87,10 @@
 ### System Status
 
 - ELK Stack: Running on shared network (internal expose:)
-- Kibana Access: http://localhost:8080 (via Nginx proxy)
+- Kibana Access: http://localhost (port 80, via Nginx proxy)
 - Elasticsearch: http://elasticsearch:9200 (internal only)
 - Logstash: Listening on 5000 (internal only)
-- Nginx Proxy: Listening on port 8080 (publicly accessible)
+- Nginx Proxy: Listening on container port 8080 → host port 80 (publicly accessible)
 - All services on 'shared' network
 - Persistent volumes: elasticsearch_data
 
