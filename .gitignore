@@ -1,5 +1,6 @@
 # Sensitive credentials
 proxy_server/config/htpasswd
+proxy_server/config/CREDENTIALS.txt
 *.env
 *.key
 *.cert
