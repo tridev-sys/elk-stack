@@ -11,6 +11,12 @@
 - ✅ Named volumes for persistent storage (survives container recreation)
 - ✅ HTTP only for now (security can be upgraded later)
 
+### Completed Steps
+
+✅ Created external Docker network 'shared'
+   - Used for cross-compose service communication
+   - Persists across container restarts
+
 ### Key Architecture Points
 - Two docker-compose files (ELK in root, Nginx in proxy_server/)
 - Shared network connecting both stacks
