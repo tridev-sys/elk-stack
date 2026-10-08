@@ -4,16 +4,29 @@ proxy_server/config/CREDENTIALS.txt
 *.env
 *.key
 *.cert
+*.pem
 
 # Docker volumes (managed by Docker)
 /data/
+elasticsearch_data/
+/volumes/
 
 # IDE files
 .idea/
 .vscode/
-*.swp
-*.swo
-
-# OS files
 .DS_Store
 Thumbs.db
+*.swp
+*.swo
+*.sublime-project
+*.sublime-workspace
+
+# Session and temporary files
+.claude/
+.superpowers/
+/tmp/
+*.log
+
+# Local test outputs
+/test-output/
+*.test-log
