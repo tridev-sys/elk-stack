@@ -1,0 +1,23 @@
+services:
+  proxy_server:
+    image: nginx:1.25-alpine
+    container_name: proxy_server
+    ports:
+      - "80:8080"
+    volumes:
+      - ./config/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./config/htpasswd:/etc/nginx/.htpasswd:ro
+    networks:
+      - shared
+    depends_on:
+      - kibana
+    healthcheck:
+      test: ["CMD", "wget", "--quiet", "--tries=1", "--spider", "http://localhost:8080/api/status"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 10s
+
+networks:
+  shared:
+    external: true
