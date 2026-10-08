@@ -103,6 +103,46 @@ Docker containers → Logstash:5000 → Elasticsearch:9200 → Kibana:5601 → N
 
 ---
 
+## Operational Guide
+
+### Quick Start
+
+See `QUICKSTART.md` for starting, stopping, and accessing the stack.
+
+### Default Credentials
+
+- **Kibana (via Nginx proxy):** admin / admin123 on http://localhost (port 80)
+- **Elasticsearch:** elastic / changeme (internal only, not exposed to host)
+
+### Port Exposure Strategy
+
+- **Exposed to Host:** Port 80 (Nginx proxy via proxy_server/docker-compose.yml)
+- **Internal Only (expose keyword):** Ports 9200, 9300 (Elasticsearch), 5601 (Kibana), 5000 (Logstash)
+- All ELK services communicate via `shared` Docker network
+
+### Persistent Data
+
+- Elasticsearch data stored in Docker volume `elasticsearch_data`
+- Volumes survive container/compose file deletion
+- To permanently delete: `docker volume rm elasticsearch_data`
+
+### Service Health Checks
+
+All services have healthchecks configured:
+- Elasticsearch: Checks cluster status
+- Kibana: Checks API status
+- Logstash: Checks pipeline status
+- Nginx: Checks status endpoint
+
+### Container Logs
+
+```bash
+docker-compose logs -f [service-name]
+docker-compose -f proxy_server/docker-compose.yml logs -f proxy_server
+```
+
+---
+
 ## Notes
 
 - **Resources:** Laptop should have 4GB+ RAM allocated to Docker Desktop for comfortable operation
