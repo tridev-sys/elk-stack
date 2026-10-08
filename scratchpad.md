@@ -28,7 +28,7 @@
 ### Configuration Files To Create
 - [ ] `docker-compose.yml` - ELK stack
 - [ ] `proxy_server/docker-compose.yml` - Nginx
-- [ ] `config/logstash/logstash.conf` - Logstash pipeline
+- [x] ✅ `config/logstash/logstash.conf` - Accepts syslog/JSON on port 5000, outputs to Elasticsearch
 - [ ] `proxy_server/config/nginx.conf` - Nginx reverse proxy
 - [ ] `proxy_server/config/htpasswd` - Basic auth credentials
 
