@@ -2,17 +2,13 @@ version: '3.8'
 
 services:
   elasticsearch:
-    image: docker.elastic.co/elasticsearch/elasticsearch:8.10.0
+    image: docker.elastic.co/elasticsearch/elasticsearch:8.9.1
     container_name: elasticsearch
     environment:
       - node.name=es-node-1
       - cluster.name=elk-cluster
       - discovery.type=single-node
-      - xpack.security.enabled=true
-      - xpack.security.enrollment.enabled=true
-      - ELASTIC_PASSWORD=changeme
-      - xpack.security.http.ssl.enabled=false
-      - xpack.security.transport.ssl.enabled=false
+      - xpack.security.enabled=false
     expose:
       - "9200"
       - "9300"
@@ -24,21 +20,27 @@ services:
       memlock:
         soft: -1
         hard: -1
+    deploy:
+      resources:
+        limits:
+          cpus: '2.0'
+          memory: 4G
+        reservations:
+          cpus: '1.0'
+          memory: 2G
     healthcheck:
-      test: ["CMD-SHELL", "curl -s http://localhost:9200 | grep -q cluster_name || exit 1"]
+      test: ["CMD-SHELL", "curl -s -u elastic:changeme http://localhost:9200 | grep -q cluster_name || exit 1"]
       interval: 30s
       timeout: 10s
       retries: 5
       start_period: 40s
 
   kibana:
-    image: docker.elastic.co/kibana/kibana:8.10.0
+    image: docker.elastic.co/kibana/kibana:8.9.1
     container_name: kibana
     environment:
       - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
-      - ELASTICSEARCH_USERNAME=elastic
-      - ELASTICSEARCH_PASSWORD=changeme
-      - xpack.security.enabled=true
+      - xpack.security.enabled=false
     expose:
       - "5601"
     networks:
@@ -46,15 +48,23 @@ services:
     depends_on:
       elasticsearch:
         condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 2G
+        reservations:
+          cpus: '0.5'
+          memory: 1G
     healthcheck:
-      test: ["CMD-SHELL", "curl -s http://localhost:5601/api/status | grep -q '\"state\":\"green\"' || exit 1"]
+      test: ["CMD-SHELL", "curl -s http://localhost:5601/api/status | grep -q 'ready' || exit 1"]
       interval: 30s
       timeout: 10s
       retries: 5
       start_period: 60s
 
   logstash:
-    image: docker.elastic.co/logstash/logstash:8.10.0
+    image: docker.elastic.co/logstash/logstash:8.9.1
     container_name: logstash
     volumes:
       - ./config/logstash/logstash.conf:/usr/share/logstash/pipeline/logstash.conf:ro
@@ -62,13 +72,19 @@ services:
       - "5000"
     environment:
       - ELASTICSEARCH_HOSTS=http://elasticsearch:9200
-      - ELASTICSEARCH_USERNAME=elastic
-      - ELASTICSEARCH_PASSWORD=changeme
     networks:
       - shared
     depends_on:
       elasticsearch:
         condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          cpus: '1.0'
+          memory: 2G
+        reservations:
+          cpus: '0.5'
+          memory: 1G
     healthcheck:
       test: ["CMD-SHELL", "curl -s http://localhost:9600 | grep -q 'ok' || exit 1"]
       interval: 30s
