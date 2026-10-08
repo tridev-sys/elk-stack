@@ -354,12 +354,12 @@ If any test fails, it will show the exact command that failed for debugging.
 ## 📚 Learn ELK: Next Steps
 
 ### For Beginners
-1. Read **LEARNING_ELK.md** (complete guide with exercises)
+1. Read **.claude/LEARNING_ELK.md** (complete guide with exercises)
 2. Follow the hands-on exercises (send logs, search, create dashboards)
 3. Experiment with Kibana's Discover and Visualize features
 
 ### For Intermediate Users
-1. Read **HOW_ELK_WORKS.md** (architecture deep-dive)
+1. Read **.claude/HOW_ELK_WORKS.md** (architecture deep-dive)
 2. Customize Logstash filters for your use cases
 3. Create custom Kibana dashboards and alerts
 
@@ -411,12 +411,15 @@ elk-stack/
 │   └── config/
 │       ├── nginx.conf              # Nginx setup
 │       └── htpasswd                # Username/password (admin:admin123)
-├── LEARNING_ELK.md                 # Complete learning guide (1,300+ lines)
-├── HOW_ELK_WORKS.md                # Architecture deep-dive
-├── TESTING.md                      # Testing procedures
-├── QUICKSTART.md                   # Operations quick reference
+├── .claude/                        # Documentation folder
+│   ├── LEARNING_ELK.md             # Complete learning guide (1,300+ lines)
+│   ├── HOW_ELK_WORKS.md            # Architecture deep-dive
+│   ├── TESTING.md                  # Testing procedures
+│   ├── QUICKSTART.md               # Operations quick reference
+│   ├── claude.md                   # Project specification
+│   └── scratchpad.md               # DevOps notes
 ├── QUICK_TEST.sh                   # Automated verification
-├── claude.md                       # Project specification
+├── README.md                       # This file
 └── manifest.json                   # Complete inventory
 ```
 
@@ -490,7 +493,7 @@ docker-compose -f proxy_server/docker-compose.yml up -d
    docker-compose logs [service-name]
    ```
 
-2. **Check TESTING.md** — Has 10-point verification checklist
+2. **Check .claude/TESTING.md** — Has 10-point verification checklist
 
 3. **Read error carefully** — Errors usually tell you what's wrong
 
@@ -507,7 +510,7 @@ You now have a complete ELK monitoring stack. Start by:
 1. ✅ **Verify:** Run `docker-compose ps` to ensure all services are healthy
 2. ✅ **Test:** Send a log with `docker exec logstash bash -c 'echo "<34>Oct 8 test: Hello" > /dev/udp/127.0.0.1/5000'`
 3. ✅ **Explore:** Open http://localhost and search your logs in Kibana
-4. ✅ **Learn:** Read LEARNING_ELK.md for comprehensive understanding
+4. ✅ **Learn:** Read .claude/LEARNING_ELK.md for comprehensive understanding
 
 **Questions?** Check the debugging section above or read the detailed documentation files.
 

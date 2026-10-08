@@ -61,7 +61,7 @@
     ],
     "documentation": [
       {
-        "path": "claude.md",
+        "path": ".claude/claude.md",
         "type": "Project Documentation",
         "purpose": "Complete project specification, architecture, and operational guidelines",
         "sections": [
@@ -76,7 +76,7 @@
         "lastModified": "2026-10-08"
       },
       {
-        "path": "QUICKSTART.md",
+        "path": ".claude/QUICKSTART.md",
         "type": "Quick Start Guide",
         "purpose": "Step-by-step instructions for starting, accessing, and managing the stack",
         "sections": [
@@ -93,7 +93,7 @@
         "lastModified": "2026-10-08"
       },
       {
-        "path": "scratchpad.md",
+        "path": ".claude/scratchpad.md",
         "type": "DevOps Notes",
         "purpose": "Implementation log, design decisions, testing notes, and session summaries",
         "sessions": ["2026-10-08 Initial Setup", "2026-10-08 Completion Summary", "2026-10-08 Task 9 Testing"],
@@ -101,7 +101,7 @@
         "lastModified": "2026-10-08"
       },
       {
-        "path": "LEARNING_ELK.md",
+        "path": ".claude/LEARNING_ELK.md",
         "type": "Educational Guide",
         "purpose": "Comprehensive learning guide covering ELK fundamentals to advanced topics",
         "sections": [
@@ -120,7 +120,7 @@
         "lastModified": "2026-10-08"
       },
       {
-        "path": "HOW_ELK_WORKS.md",
+        "path": ".claude/HOW_ELK_WORKS.md",
         "type": "Architecture Deep-Dive",
         "purpose": "Technical architecture explanation with ASCII diagrams and real-world examples",
         "sections": [
@@ -137,7 +137,7 @@
         "lastModified": "2026-10-08"
       },
       {
-        "path": "TESTING.md",
+        "path": ".claude/TESTING.md",
         "type": "Verification Guide",
         "purpose": "Testing procedures, verification checklist, and troubleshooting",
         "sections": [
